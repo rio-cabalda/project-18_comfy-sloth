@@ -82,14 +82,14 @@ const Wrapper = styled.div`
     
       span {
       text-transform: capitalize;
-      font-size: 1.4rem;
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: var(--spacing);
       }
       button {
         background: transparent;
         border-color: transparent;
-        font-size: 1rem;
+        font-size: .8rem;
         text-transform: capitalize;
         cursor: pointer;
         color: var(--clr-grey-3);
