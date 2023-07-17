@@ -19,9 +19,9 @@ root.render(
     <Auth0Provider
     domain="dev-q40ffeajuohvqjlw.us.auth0.com"
     clientId="sFfNuDgbSIhtExxwtSouJi3i6YHqrApa"
-    authorizationParams={{
-      redirect_uri: window.location.origin
-    }}>
+    redirectUri = {window.location.origin}
+    cacheLocation='localstorage'
+    >
         <UserProvider>
             <ProductsProvider>
                 <FilterProvider>

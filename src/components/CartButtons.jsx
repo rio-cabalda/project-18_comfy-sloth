@@ -9,8 +9,7 @@ import { useUserContext } from '../context/user_context'
 const CartButtons = () => {
   const {closeSidebar} = useProductsContext();
   const {total_items} = useCartContext()
-  const {loginWithRedirect,isAuthenticated,user, myUser, logout} = useUserContext()
-  console.log(myUser);
+  const {loginWithRedirect,isAuthenticated,isLoading, myUser, logout} = useUserContext()
   return (
   <Wrapper className='cart-btn-wrapper'> 
     <Link to='/cart' className='cart-btn' onClick={closeSidebar}>
@@ -20,7 +19,8 @@ const CartButtons = () => {
         <span className='cart-value'>{total_items}</span>
       </span>
     </Link>
-    {isAuthenticated ? 
+    {!isLoading && <>
+    {myUser ? 
       <div className='login-container'>
           <img src={myUser?.picture}  alt="login user" />
           <div className="user">
@@ -32,9 +32,10 @@ const CartButtons = () => {
           </div>
       </div>
     : <button type='button' className='auth-btn'
-    onClick={loginWithRedirect}>
+      onClick={loginWithRedirect}>
       Login <FaUserPlus/>
     </button>}
+    </>}
   </Wrapper>
   )
 }
@@ -107,7 +108,7 @@ const Wrapper = styled.div`
         width: 0;
         height: 2px;
         background: var(--clr-grey-3);
-        transition: all 200ms ease-in;
+        transition: width 150ms ease-in;
       }
       button:hover::after{
         width: 90%;

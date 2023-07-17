@@ -2,13 +2,13 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'
 import {Home,Products, SingleProduct, About, Cart, Error,
-  Checkout, PrivateRoute} from './pages'
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+  Checkout, PrivateRoute, AuthWrapper} from './pages'
+
 
 function App() {
 
   return ( 
+    <AuthWrapper>
         <Router>
             <Navbar />
             <Sidebar />
@@ -28,9 +28,10 @@ function App() {
             <Route exact path='/products/:id' children={<SingleProduct />}>
                 
             </Route>
-            <Route exact path='/checkout'>
+            <PrivateRoute exact path='/checkout'>  
+                {/* to view the method of Protected route, go to PrivateRoute.jsx */}
                 <Checkout />
-            </Route>
+            </PrivateRoute>
             <Route exact path='*'>
                 <Error />
             </Route>
@@ -38,6 +39,7 @@ function App() {
 
             <Footer />
         </Router>
+    </AuthWrapper>
  )
 }
 
