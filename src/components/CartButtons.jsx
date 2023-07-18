@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa'
+import { FaShoppingCart, FaUserPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductsContext } from '../context/products_context'
@@ -9,7 +9,7 @@ import { useUserContext } from '../context/user_context'
 const CartButtons = () => {
   const {closeSidebar} = useProductsContext();
   const {total_items} = useCartContext()
-  const {loginWithRedirect,isAuthenticated,isLoading, myUser, logout} = useUserContext()
+  const {loginWithRedirect,isLoading, myUser, logout} = useUserContext()
   return (
   <Wrapper className='cart-btn-wrapper'> 
     <Link to='/cart' className='cart-btn' onClick={closeSidebar}>
@@ -47,13 +47,26 @@ const Wrapper = styled.div`
   justify-content: center;
   column-gap: 1.9rem;
 
+  @keyframes bubbleEffect {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
   .cart-btn {
     color: var(--clr-grey-1);
     font-size: 1.5rem;
     letter-spacing: var(--spacing);
     display: flex;
     align-items: center;
-    
+  }
+  .cart-btn:hover {
+    animation: bubbleEffect 1s infinite;
   }
   .cart-container {
     display: flex;
