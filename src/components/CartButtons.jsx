@@ -60,7 +60,7 @@ const Wrapper = styled.div`
   }
   .cart-btn {
     color: var(--clr-grey-1);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     letter-spacing: var(--spacing);
     display: flex;
     align-items: center;
