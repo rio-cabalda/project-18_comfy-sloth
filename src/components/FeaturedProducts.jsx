@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useProductsContext } from '../context/products_context'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -29,6 +29,7 @@ const FeaturedProducts = () => {
       {featured.slice(0,3).map((product)=>{
         return <Product key={product.id} {...product} />
       })}
+      <Link to='/products' className='btn'>all products</Link>
     </div>
   </Wrapper>)
 }

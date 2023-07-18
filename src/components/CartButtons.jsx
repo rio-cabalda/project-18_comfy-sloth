@@ -8,7 +8,7 @@ import { useUserContext } from '../context/user_context'
 
 const CartButtons = () => {
   const {closeSidebar} = useProductsContext();
-  const {total_items} = useCartContext()
+  const {total_items, clearCart} = useCartContext()
   const {loginWithRedirect,isLoading, myUser, logout} = useUserContext()
   return (
   <Wrapper className='cart-btn-wrapper'> 
@@ -26,7 +26,10 @@ const CartButtons = () => {
           <div className="user">
             <span className='user-name'>{myUser?.name ? myUser?.name: 'user'}</span>
             <button type='button'
-            onClick={()=>logout({returnTo: window.location.origin})}>
+            onClick={()=>{
+              clearCart()
+              logout({returnTo: window.location.origin})}
+            }>
               logout
             </button>
           </div>
@@ -47,6 +50,16 @@ const Wrapper = styled.div`
   justify-content: center;
   column-gap: 1.9rem;
 
+ 
+  .cart-btn {
+    color: var(--clr-grey-1);
+    font-size: 1.2rem;
+    letter-spacing: var(--spacing);
+    display: flex;
+    align-items: center;
+    backface-visibility: hidden;
+    transform-origin: center;
+  }
   @keyframes bubbleEffect {
     0% {
       transform: scale(1);
@@ -57,13 +70,6 @@ const Wrapper = styled.div`
     100% {
       transform: scale(1);
     }
-  }
-  .cart-btn {
-    color: var(--clr-grey-1);
-    font-size: 1.1rem;
-    letter-spacing: var(--spacing);
-    display: flex;
-    align-items: center;
   }
   .cart-btn:hover {
     animation: bubbleEffect 1s infinite;
@@ -147,7 +153,7 @@ const Wrapper = styled.div`
     align-items: center;
     background: transparent;
     border-color: transparent;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
     color: var(--clr-grey-1);
     letter-spacing: var(--spacing);

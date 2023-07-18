@@ -13,11 +13,17 @@ import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { useHistory } from 'react-router-dom'
 
+// don't communicate directly to paypal server for payment(for checkout item) from PaypalCheckout component due security issue.
+// create a function folder in the root folder. 
+// From PaypalCheckout component, it must communicate to function (./function)
+// and from the function, it will communicate direct to the paypal server. 
+// in the response, from the paypal the data pass to function and then pass to PaypalCheckout component
+
 const CheckoutForm = () => {
   return <h4>hello from Stripe Checkout </h4>
 }
 
-const StripeCheckout = () => {
+const PaypalCheckout = () => {
   return (
     <Wrapper>
       <CheckoutForm />
@@ -165,4 +171,4 @@ const Wrapper = styled.section`
   }
 `
 
-export default StripeCheckout
+export default PaypalCheckout
