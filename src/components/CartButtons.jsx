@@ -98,10 +98,10 @@ const Wrapper = styled.div`
   .user {
     display: flex;
     flex-direction: column;
+    row-gap: .2rem;
     line-height: 1;
     
       span {
-      text-transform: capitalize;
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: var(--spacing);
