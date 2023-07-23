@@ -1,12 +1,12 @@
 import { PayPalButtons } from "@paypal/react-paypal-js"
 import { useState } from "react"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import {useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify'
 
 
 const PaypalCheckoutButton = ({products,clearCart}) => {
     const [error, setError] = useState(null) // this is for error process state
-    const history = useHistory();
+    const navigate = useNavigate()
     console.log(products);
 
 
@@ -55,16 +55,19 @@ const PaypalCheckoutButton = ({products,clearCart}) => {
         const {given_name, surname} = order.payer.name
         console.log('order',order);
         if(order.status==='COMPLETED'){
-            clearCart();
-            toast.success(`Thank you for your purchase! ${given_name} ${surname}`)
-            history.push('/');
+            setTimeout(()=>{
+                clearCart();
+                toast.success(`Thank you for your purchase! ${given_name} ${surname}`)
+                navigate('/');
+            },1000)
+            
         }
         // call handleApprove function to personalize user experience after checking out successfully
         // then passing the order ID to data param
     }}
     onCancel={()=>{
         //cancel message, modal or redirect user to cancel page, redirect back to cart
-        history.push('/cart');
+        navigate('/cart');
         toast.warning('You cancel the order')
     }}
     onError={(err)=>{
