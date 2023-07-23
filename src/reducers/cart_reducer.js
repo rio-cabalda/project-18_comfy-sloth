@@ -10,7 +10,7 @@ const cart_reducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:  
       const {id,color,quantity,product} = action.payload
-      const tempItem = state.cart.find((itemData)=> itemData.id == id + color)
+      const tempItem = state.cart.find((itemData)=> itemData.id === id + color)
       // if tempItem is true or has return value, this function will combine the same product with different color
       if(tempItem){
         const tempCart = state.cart.map((cartItem)=>{// mapping all product in the cart and checking for the existing item
@@ -76,9 +76,9 @@ const cart_reducer = (state, action) => {
              return {...cartItem, quantity: newQuantity}
             
           }
-        }else {
-          return cartItem
         }
+          return cartItem
+        
       })
 
       return {...state, cart: tempQuantityCart}
@@ -98,10 +98,13 @@ const cart_reducer = (state, action) => {
           total_amount: 0,
       })
        return {...state, total_items, total_amount}
+       
+       default:
+         throw new Error(`No Matching "${action.type}" - action type`)
+
   }
 
   //return state
-  throw new Error(`No Matching "${action.type}" - action type`)
 }
 
 export default cart_reducer

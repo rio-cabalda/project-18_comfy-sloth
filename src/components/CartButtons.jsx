@@ -10,6 +10,7 @@ const CartButtons = () => {
   const {closeSidebar} = useProductsContext();
   const {total_items, clearCart} = useCartContext()
   const {loginWithRedirect,isLoading, myUser, logout} = useUserContext()
+
   return (
   <Wrapper className='cart-btn-wrapper'> 
     <Link to='/cart' className='cart-btn' onClick={closeSidebar}>

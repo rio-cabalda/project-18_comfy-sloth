@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { loadStripe } from '@stripe/stripe-js'
-import {
-  CardElement,
-  useStripe,
-  Elements,
-  useElements,
-} from '@stripe/react-stripe-js'
-import axios from 'axios'
+// import axios from 'axios'
 import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
+import PaypalCheckoutButton from './PaypalCheckoutButton'
+
+
 
 // don't communicate directly to paypal server for payment(for checkout item) from PaypalCheckout component due security issue.
 // create a function folder in the root folder. 
@@ -20,7 +16,26 @@ import { useHistory } from 'react-router-dom'
 // in the response, from the paypal the data pass to function and then pass to PaypalCheckout component
 
 const CheckoutForm = () => {
-  return <h4>hello from Stripe Checkout </h4>
+  const { total_amount, shipping_fee,clearCart} = useCartContext()
+  const {myUser} = useUserContext()
+  // const history = useHistory()
+  const products = {
+    description: "Paypal Payment",
+    // total_amount: 0.5
+    total_amount: (shipping_fee + total_amount) / 100
+  }
+  
+  return (
+    <article>
+      <h4>Hello, {myUser && myUser.name}</h4>
+      <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
+      <br />
+      <p>Pay with:</p>
+      <div className="paypal-button-container">
+      <PaypalCheckoutButton products={products} clearCart={clearCart}/>
+      </div>
+    </article>
+  )
 }
 
 const PaypalCheckout = () => {

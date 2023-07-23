@@ -5,7 +5,6 @@ import { single_product_url as url } from '../utils/constants'
 import { formatPrice } from '../utils/helpers'
 import {
   Loading,
-  Error,
   ProductImages,
   AddToCart,
   Stars,

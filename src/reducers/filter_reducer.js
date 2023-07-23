@@ -1,4 +1,4 @@
-import { all } from 'axios'
+// import { all } from 'axios'
 import {
   LOAD_PRODUCTS,
   SET_LISTVIEW,
@@ -89,11 +89,11 @@ switch (action.type) {
         price: state.filters.max_price,
         shipping: false,} 
     }
-    
+    default:
+      throw new Error(`No Matching "${action.type}" - action type`)
     
  }
   // return state
-  throw new Error(`No Matching "${action.type}" - action type`)
 }
 
 export default filter_reducer
