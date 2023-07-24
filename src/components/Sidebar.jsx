@@ -62,7 +62,7 @@ const Sidebar = () => {
         </li>
         <li>
             {myUser ? 
-            <a>
+            <div>
               <button type='button' className='link_auth-btn'
               onClick={()=>{
                 clearCart()
@@ -70,14 +70,14 @@ const Sidebar = () => {
               }>
                 logout
               </button>
-            </a>
+            </div>
             :
-            <a>
+            <div>
               <button type='button' className='link_auth-btn'
               onClick={loginWithRedirect}>
               Login <FaUserPlus/>
               </button>
-            </a>
+            </div>
             }
         </li>
       </ul>
@@ -135,7 +135,7 @@ const SidebarContainer = styled.div`
     margin-bottom: 2rem;
     cursor: pointer;
   }
-  .links a {
+  .links a, div {
     display: block;
     text-align: left;
     font-size: 1rem;
@@ -146,7 +146,7 @@ const SidebarContainer = styled.div`
     letter-spacing: var(--spacing);
   }
 
-  .links a:hover {
+  .links a:hover, div:hover {
     padding: 1rem 1.5rem;
     padding-left: 2rem;
     background: var(--clr-grey-10);

@@ -4,7 +4,7 @@ import { Navbar, Sidebar, Footer } from './components'
 import {Home,Products, SingleProduct, About, Cart, Error,
   Checkout, PrivateRoute, AuthWrapper} from './pages'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
-import { ToastContainer, toast } from 'react-toastify'; // beautify toast
+import { ToastContainer } from 'react-toastify'; // beautify toast
 import 'react-toastify/dist/ReactToastify.css'; 
 function App() {
 

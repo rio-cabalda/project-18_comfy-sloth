@@ -2,13 +2,12 @@ import { PayPalButtons } from "@paypal/react-paypal-js"
 import { useState } from "react"
 import {useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify'
-
+import { useUserContext } from "../context/user_context";
 
 const PaypalCheckoutButton = ({products,clearCart}) => {
     const [error, setError] = useState(null) // this is for error process state
     const navigate = useNavigate()
-    console.log(products);
-
+    const {myUser} = useUserContext()
 
     if(error) {
         // display success message
@@ -52,12 +51,11 @@ const PaypalCheckoutButton = ({products,clearCart}) => {
         // it must capture the order to deduct the amount to the buyers account 
         // capture is a promise function therefore use async await
         const order = await actions.order.capture()
-        const {given_name, surname} = order.payer.name
-        console.log('order',order);
+        // console.log('order',order);
         if(order.status==='COMPLETED'){
             setTimeout(()=>{
                 clearCart();
-                toast.success(`Thank you for your purchase! ${given_name} ${surname}`)
+                toast.success(`Thank you for your purchase! ${myUser.nickname}`)
                 navigate('/');
             },1000)
             

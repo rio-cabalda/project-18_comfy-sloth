@@ -26,6 +26,7 @@ const SingleProductPage = () => {
 
   useEffect(()=>{ // will fetch single product using the pass id
     fetchSingleProduct(`${url}${id}`)
+    // eslint-disable-next-line
   },[id])
 
   useEffect(()=>{// if there's an error, this will redirect to homepage after 3seconds due to setTimeout function.
@@ -34,7 +35,8 @@ const SingleProductPage = () => {
           navigate('/'); //will go to homepage
       }, 3000)
     }
-  },[error])
+    // eslint-disable-next-line
+    },[error])
 
   if(loading)  return <Loading />
   return (

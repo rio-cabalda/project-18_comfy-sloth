@@ -30,7 +30,9 @@ const CheckoutForm = () => {
       <h4>Hello, {myUser && myUser.name}</h4>
       <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
       <br />
-      <p>Pay with:</p>
+      <p>Pay with Paypal test account:</p>
+      <p>Email: sb-47qkay26821058@personal.example.com</p>
+      <p>Password: {`YSJ[4p/4`}</p>
       <div className="paypal-button-container">
       <PaypalCheckoutButton products={products} clearCart={clearCart}/>
       </div>
